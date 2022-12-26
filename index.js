@@ -22,7 +22,6 @@ function start(){
         return;
     }
     seconds++;
-    console.log(seconds);
     if(seconds > 59){
         minutes++;
         seconds=0;
