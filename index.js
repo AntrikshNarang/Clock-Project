@@ -1,17 +1,10 @@
 var hours=0,minutes=0,seconds=0;
 var started=false;
 document.querySelector("#start").addEventListener("click",change);
-document.querySelector("#reset").addEventListener("click",function(){
-    started = false;
-    seconds = 0;
-    minutes = 0;
-    hours = 0;
-    document.querySelector(".seconds").textContent=("00");
-    document.querySelector(".minutes").textContent=("00");
-    document.querySelector(".hours").textContent=("00");
-    document.querySelector("#start").textContent=("Start");
-});
+document.querySelector("img").addEventListener("click",switchMode);
+document.querySelector("#reset").addEventListener("click",reset);
 
+//Function Checks The Current State for Pause/Resume
 function change(){
     started = !started;
     if(started === true){
@@ -22,6 +15,8 @@ function change(){
         paused();
     }
 }
+
+//Start Function
 function start(){
     if(started === false){
         return;
@@ -58,7 +53,35 @@ function start(){
         setTimeout(start,1000);
     }
 }
+
+//Pause Function
 function paused(){
     started=false;
     document.querySelector("#start").textContent=("Resume");
+}
+
+//Reset Function
+function reset(){
+    started = false;
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    document.querySelector(".seconds").textContent=("00");
+    document.querySelector(".minutes").textContent=("00");
+    document.querySelector(".hours").textContent=("00");
+    document.querySelector("#start").textContent=("Start");
+}
+
+
+
+//Dark Mode
+function switchMode(){
+    $("img").fadeOut(200).fadeIn(200);
+    setTimeout(function(){
+        $("img").delay(1000).toggleClass("mode");
+    },200)
+    $(".main").fadeOut(200).fadeIn(200);
+    setTimeout(function(){
+        $(".main").delay(1000).toggleClass("mode");
+    },200)
 }
