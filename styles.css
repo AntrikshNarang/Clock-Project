@@ -29,5 +29,9 @@ button:hover{
     cursor: pointer;
     background-color: whitesmoke;
     color:black;
-    font-size: 1.3rem;
+    transform: scale(1.05) translateY(-3px);
+}
+button:active{
+    background-color: gray;
+    border: gray;
 }

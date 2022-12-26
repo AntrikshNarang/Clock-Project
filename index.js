@@ -1,27 +1,31 @@
 var hours=0,minutes=0,seconds=0;
-var started=0;
-if(!started){
-    document.querySelector("#start").addEventListener("click",currentState);
-}
-// start();
-function currentState{
+var started=false;
+document.querySelector("#start").addEventListener("click",change);
+document.querySelector("#reset").addEventListener("click",function(){
+    started = false;
+    seconds = 0;
+    minutes = 0;
+    hours = 0;
+    document.querySelector(".seconds").textContent=("00");
+    document.querySelector(".minutes").textContent=("00");
+    document.querySelector(".hours").textContent=("00");
+    document.querySelector("#start").textContent=("Start");
+});
+
+function change(){
+    started = !started;
     if(started === true){
-        
+        document.querySelector("#start").textContent=("Pause");
+        setTimeout(start,1000);
     }
     else{
-
+        paused();
     }
 }
 function start(){
-    started = 1;
-    document.querySelector("#start").removeEventListener("click",start);
-    document.querySelector("#start").textContent=("Pause");
-    document.querySelector("#start").addEventListener("click",paused);
-    if(started === 0){
-
+    if(started === false){
+        return;
     }
-    else{
-    started = 1;
     seconds++;
     console.log(seconds);
     if(seconds > 59){
@@ -50,15 +54,11 @@ function start(){
     else{
         document.querySelector(".seconds").textContent=(seconds);
     }
-    // setTimeout(start,1000);
+    if(started === true){
+        setTimeout(start,1000);
     }
-    // setTimeout(() => {
-    //     start();
-    // }, 1000);
 }
 function paused(){
-    // document.querySelector("#start").removeEventListener("click",paused);
-    started=0;
-    document.querySelector("#start").textContent=("Start");
-    document.querySelector("#start").addEventListener("click",start);
+    started=false;
+    document.querySelector("#start").textContent=("Resume");
 }
