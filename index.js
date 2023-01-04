@@ -77,10 +77,10 @@ function reset(){
 function switchMode(){
     $("img").fadeOut(200).fadeIn(200);
     setTimeout(function(){
-        $("img").delay(1000).toggleClass("mode");
+        $("img").toggleClass("mode");
     },200)
     $(".main").fadeOut(200).fadeIn(200);
     setTimeout(function(){
-        $(".main").delay(1000).toggleClass("mode");
+        $(".main").toggleClass("mode");
     },200)
 }
